@@ -24,6 +24,7 @@ build/
 
 # Remix / Solidity
 .artifacts/
+artifacts/
 .cache/
 
 # Temporary
