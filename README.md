@@ -1,4 +1,4 @@
-# Blockchain TCG — University Project
+# Blockchain TCG
 
 Monorepo for a MVP of a Blockchain-based Trading Card Game.
 
