@@ -26,6 +26,7 @@ build/
 .artifacts/
 artifacts/
 .cache/
+.deps/
 
 # Temporary
 *.log
