@@ -27,6 +27,7 @@ build/
 artifacts/
 .cache/
 .deps/
+smart-contracts/.states/
 
 # Temporary
 *.log
