@@ -1,42 +1,199 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* --- Global Reset & Dark Mode Base --- */
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-main: #ffffff;
+  --text-muted: #a0a0a0;
+  --accent-color: #646cff;
+  --accent-gradient: linear-gradient(135deg, #646cff 0%, #9f5afd 100%);
+  --nav-height: 70px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Wrapper --- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1;
+  padding: 20px;
+  padding-bottom: calc(var(--nav-height) + 20px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Bottom Navbar --- */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-link.active {
+  color: #fff;
+}
+
+.nav-link.active .nav-icon {
+  color: #9f5afd;
+  transform: scale(1.1);
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+  transition: transform 0.2s;
+}
+
+/* --- Wallet Status (oben) --- */
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  margin-bottom: 20px;
+  width: 100%; 
+  max-width: 600px;
+}
+
+.wallet-badge {
+  background: #333;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-family: monospace;
+  color: #00ff88;
+  border: 1px solid #444;
+}
+
+/* --- Buttons --- */
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 100%;
+  transition: transform 0.1s, opacity 0.2s;
+  box-shadow: 0 4px 15px rgba(100, 108, 255, 0.4);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* --- Card Grid (Collection) --- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tcg-card {
+  background: var(--card-bg);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 15px;
   text-align: center;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 2/3;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.tcg-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-color);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-id {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.card-balance {
+  background: #000;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  color: #fff;
 }
 
-.card {
-  padding: 2em;
+.page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px; 
 }
 
-.read-the-docs {
-  color: #888;
+.body {
+  display: flex;
+  justify-content: center;
+  min-height: 100hv;
+  margin: 0;
+  background-color: #000;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
 }
