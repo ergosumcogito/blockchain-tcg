@@ -1,5 +1,6 @@
 import { Link, useOutletContext } from "react-router-dom";
 import type { AppContextType } from "../App";
+import { getCardMeta } from "../cardData";
 
 export function Collection() {
   const { collection, userAddress } = useOutletContext<AppContextType>();
@@ -13,7 +14,7 @@ export function Collection() {
   }
 
   return (
-    <div className="page-content"> {}
+    <div className="page-content">
       <h2 style={{ marginBottom: "20px" }}>Deine Sammlung</h2>
 
       {collection.length === 0 ? (
@@ -28,18 +29,31 @@ export function Collection() {
         </div>
       ) : (
         <div className="card-grid">
-          {collection.map((card) => (
-            <Link 
-              to={`/collection/${card.id}`} 
-              key={card.id} 
-              className="tcg-card"
-              style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
-            >
-              <div className="card-id">#{card.id}</div>
-              <div className="card-balance">{card.balance}x</div>
-            </Link>
-          ))}
-        </div>
+          {collection.map((card) => {
+            const meta = getCardMeta(card.id);
+
+            return (
+              <Link
+                to={`/collection/${card.id}`}
+                key={card.id}
+                className="tcg-card"
+                style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
+                  <div className="card-image-container">
+                    <img
+                      src={meta.image}
+                      alt={meta.name}
+                      style={{ width: "100%", borderRadius: "8px" }}
+                    />
+                  </div>
+
+                  <div className="card-info">
+                    <div className="card-title">{meta.name}</div>
+                    <div className="card-balance">Besitz: {card.balance}</div>
+                  </div>
+                </Link>
+            );
+          })}
+      </div>
       )}
     </div>
   );
