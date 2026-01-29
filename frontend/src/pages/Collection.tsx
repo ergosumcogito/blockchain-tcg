@@ -32,11 +32,13 @@ export function Collection() {
           {collection.map((card) => {
             const meta = getCardMeta(card.id);
 
+            const isMissing = card.balance === 0;
+
             return (
               <Link
                 to={`/collection/${card.id}`}
                 key={card.id}
-                className="tcg-card"
+                className={`tcg-card ${isMissing ? "is-missing" : ""}`}
                 style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
                   <div className="card-image-container">
                     <img

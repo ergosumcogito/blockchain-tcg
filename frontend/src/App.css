@@ -202,3 +202,15 @@ button {
   display: flex;
   flex-direction: column;
 }
+
+.tcg-card.is-missing {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  border-color: #333;
+}
+
+.tcg-card.is-missing:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+  filter: grayscale(80%);
+}
