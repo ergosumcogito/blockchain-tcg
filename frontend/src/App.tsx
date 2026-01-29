@@ -4,6 +4,7 @@ import { getContract } from "./contract";
 import { Navbar } from "./components/Navbar";
 import { Store } from "./pages/Store";
 import { Collection } from "./pages/Collection";
+import { CardDetailPage } from "./pages/CardDetailPage";
 import "./App.css";
 
 export type AppContextType = {
@@ -154,6 +155,7 @@ function App() {
         }>
           <Route path="/" element={<Store />} />
           <Route path="/collection" element={<Collection />} />
+          <Route path="/collection/:id" element={<CardDetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

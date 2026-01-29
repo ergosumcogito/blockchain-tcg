@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import type { AppContextType } from "../App";
 
 export function Collection() {
@@ -29,10 +29,15 @@ export function Collection() {
       ) : (
         <div className="card-grid">
           {collection.map((card) => (
-            <div key={card.id} className="tcg-card">
+            <Link 
+              to={`/collection/${card.id}`} 
+              key={card.id} 
+              className="tcg-card"
+              style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+            >
               <div className="card-id">#{card.id}</div>
               <div className="card-balance">{card.balance}x</div>
-            </div>
+            </Link>
           ))}
         </div>
       )}
