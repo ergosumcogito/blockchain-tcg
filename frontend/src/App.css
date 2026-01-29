@@ -1,4 +1,11 @@
 /* --- Global Reset & Dark Mode Base --- */
+.container-limit {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 :root {
   --bg-color: #121212;
   --card-bg: #1e1e1e;
@@ -31,12 +38,13 @@ body {
 
 .content-wrapper {
   flex: 1;
-  padding: 20px;
+  padding-top: 20px;
   padding-bottom: calc(var(--nav-height) + 20px);
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 /* --- Bottom Navbar --- */
@@ -50,8 +58,7 @@ body {
   backdrop-filter: blur(10px);
   border-top: 1px solid #333;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
   z-index: 1000;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
 }
@@ -90,7 +97,6 @@ body {
   padding: 15px 0;
   margin-bottom: 20px;
   width: 100%; 
-  max-width: 600px;
 }
 
 .wallet-badge {
@@ -134,8 +140,8 @@ button {
 /* --- Card Grid (Collection) --- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
   width: 100%;
   justify-content: center;
 }
@@ -180,13 +186,12 @@ button {
   align-items: center;
   text-align: center;
   width: 100%;
-  max-width: 600px; 
 }
 
 .body {
   display: flex;
   justify-content: center;
-  min-height: 100hv;
+  min-height: 100vh;
   margin: 0;
   background-color: #000;
 }

@@ -27,40 +27,39 @@ function Layout({
   return (
     <div className="app-container">
       <div className="content-wrapper">
-        
-        <div className="header-bar">
-          <h2 style={{ 
-            margin: 0, 
-            background: 'linear-gradient(45deg, #646cff, #9f5afd)', 
-            WebkitBackgroundClip: 'text', 
-            WebkitTextFillColor: 'transparent' 
-          }}>
-            BlockDeck
-          </h2>
-          
-          {userAddress ? (
-            <span className="wallet-badge">
-              {userAddress.slice(0, 6)}...{userAddress.slice(-4)}
-            </span>
-          ) : (
-            <button 
-              onClick={connectWallet} 
-              style={{
-                background: 'transparent', 
-                border: '1px solid var(--accent-color)', 
-                color: 'var(--accent-color)', 
-                padding: '6px 12px', 
-                borderRadius: '8px',
-                fontSize: '0.8rem'
-              }}
-            >
-              Connect Wallet
-            </button>
-          )}
+        <div className="container-limit">
+          <div className="header-bar">
+            <h2 style={{ 
+              margin: 0, 
+              background: 'linear-gradient(45deg, #646cff, #9f5afd)', 
+              WebkitBackgroundClip: 'text', 
+              WebkitTextFillColor: 'transparent' 
+            }}>
+              BlockDeck
+            </h2>
+            
+            {userAddress ? (
+              <span className="wallet-badge">
+                {userAddress.slice(0, 6)}...{userAddress.slice(-4)}
+              </span>
+            ) : (
+              <button 
+                onClick={connectWallet} 
+                style={{
+                  background: 'transparent', 
+                  border: '1px solid var(--accent-color)', 
+                  color: 'var(--accent-color)', 
+                  padding: '6px 12px', 
+                  borderRadius: '8px',
+                  fontSize: '0.8rem'
+                }}
+              >
+                Connect Wallet
+              </button>
+            )}
+          </div>
+          <Outlet context={contextData} />
         </div>
-
-        <Outlet context={contextData} />
-        
       </div>
 
       <Navbar />
