@@ -1,6 +1,7 @@
-import { useParams, useOutletContext, Link } from 'react-router-dom';
+import { useParams, useOutletContext, Link } from "react-router-dom";
 import type { AppContextType } from "../App";
 import { getCardMeta } from "../cardData";
+import "../App.css";
 
 export function CardDetailPage() {
     const { id } = useParams();
@@ -13,51 +14,35 @@ export function CardDetailPage() {
         return <div>Du besitzt diese Karte nicht oder sie existiert nicht.</div>
     }
 
+    const isMissing = userCard.balance === 0;
+    const imageClass = isMissing ? "detail-image is-missing" : "detail-image";
+
     return (
         <div className="page-content">
-            <div style={{ width: "100%", display: "flex", justifyContent: "flex-start", marginBottom: "20px" }}>
-                <Link
-                    to="/collection"
-                    style={{
-                        color: "#aaa",
-                        textDecoration: "none",
-                        fontSize: "1rem",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "8px"
-                    }}
-                >
+
+            <div className="back-link-container">
+                <Link to="/collection" className="back-link">
                     <span>‹</span> Zurück zur Sammlung
                 </Link>
             </div>
 
-            <div className="detail-container" style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "20px" }}></div>
+            <div className="detail-container">
 
-            <img
-                src={meta.image}
-                alt={meta.name}
-                style={{ 
-                    width: "100%", 
-                    maxWidth: "300px", 
-                    borderRadius: "15px", 
-                    boxShadow: "0 0 20px rgba(0,0,0,0.5)" 
-                }}
-            />
+                <img
+                    src={meta.image}
+                    alt={meta.name}
+                    className={imageClass}
+                />
 
-            <div style={{ textAlign: "center" }}>
-                <h1 style={{ margin: "10px 0" }}>{meta.name}</h1>
-                <div style={{
-                    marginTop: "10px",
-                    padding: "20px",
-                    border: "1px solid #444",
-                    borderRadius: "12px",
-                    background: "rgba(255,255,255,0.05",
-                    minWidth: "250px"
-                }}>
-                    <p style={{ margin: "5px 0", color: "#aaa" }}>Karten ID: #{userCard.id}</p>
-                    <p style={{ fontSize: "1.2rem", fontWeight: "bold", margin: "10px 0" }}>
-                        Im Besitz: {userCard.balance}x
-                    </p>
+                <div className="detail-info-wrapper">
+                    <h1 className="detail-title">{meta.name}</h1>
+
+                    <div className="stats-box">
+                        <p className="stats-id">Karten ID: #{userCard.id}</p>
+                        <p className="stats-balance">
+                            Im Besitz: {userCard.balance}x
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

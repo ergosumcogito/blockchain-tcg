@@ -7,24 +7,19 @@ export function Collection() {
 
   if (!userAddress) {
     return (
-      <div className="page-content" style={{ marginTop: "50px" }}>
-        <p>Bitte verbinde deine Wallet,<br/>um deine Karten zu sehen.</p>
+      <div className="page-content wallet-connect-msg">
+        <p>Bitte verbinde deine Wallet, um deine Kartensammlung zu sehen.</p>
       </div>
     );
   }
 
   return (
     <div className="page-content">
-      <h2 style={{ marginBottom: "20px" }}>Deine Sammlung</h2>
+      <h2 className="collection-title">Deine Sammlung</h2>
 
       {collection.length === 0 ? (
-        <div style={{ 
-          padding: "40px", 
-          border: "1px dashed #444", 
-          borderRadius: "12px",
-          background: "rgba(255,255,255,0.02)"
-        }}>
-          <p style={{ fontSize: "3rem", margin: 0 }}></p>
+        <div className="empty-state-box">
+          <p className="empty-state-icon"></p>
           <p>Du besitzt noch keine Karten.</p>
         </div>
       ) : (
@@ -38,13 +33,12 @@ export function Collection() {
               <Link
                 to={`/collection/${card.id}`}
                 key={card.id}
-                className={`tcg-card ${isMissing ? "is-missing" : ""}`}
-                style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
+                className={`tcg-card card-link-wrapper ${isMissing ? "is-missing" : ""}`}>
                   <div className="card-image-container">
                     <img
                       src={meta.image}
                       alt={meta.name}
-                      style={{ width: "100%", borderRadius: "8px" }}
+                      className="collection-card-image"
                     />
                   </div>
 

@@ -5,13 +5,7 @@ import { GiCardRandom, GiShop } from "react-icons/gi";
 export function Navbar() {
   return (
     <nav className="bottom-nav">
-      <div className="container-limit" style={{ 
-        display: 'flex', 
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        width: '100%',
-        height: '100%'
-      }}>
+      <div className="container-limit">
         
         <NavLink 
           to="/" 
