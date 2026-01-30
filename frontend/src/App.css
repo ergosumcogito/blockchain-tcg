@@ -145,7 +145,68 @@ button {
   cursor: not-allowed;
 }
 
-/* --- Card Grid (Collection) --- */
+/* --- Store Page --- */
+.store-card {
+  border: 1px solid #333;
+  padding: 30px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto; 
+}
+
+.store-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.store-booster-text {
+  margin: 10px 0 20px 0;
+  color: #aaa; 
+}
+
+/* --- Collection Page --- */
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.wallet-connect-msg {
+  margin-top: 50px;
+}
+
+.collection-title {
+  margin-bottom: 20px;
+}
+
+.empty-state-box {
+  padding: 40px;
+  border: 1px dashed #444;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.card-link-wrapper {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.collection-card-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -230,59 +291,6 @@ button {
   transform: translateY(-2px);
   opacity: 0.8;
   filter: grayscale(80%);
-}
-
-/* --- Store Page --- */
-.store-card {
-  border: 1px solid #333;
-  padding: 30px;
-  border-radius: 16px;
-  background: var(--card-bg);
-  max-width: 350px;
-  width: 100%;
-  margin: 0 auto; 
-}
-
-.store-subtitle {
-  color: var(--text-muted);
-  margin-bottom: 30px;
-}
-
-.store-booster-text {
-  margin: 10px 0 20px 0;
-  color: #aaa; 
-}
-
-/* --- Collection Page --- */
-.wallet-connect-msg {
-  margin-top: 50px;
-}
-
-.collection-title {
-  margin-bottom: 20px;
-}
-
-.empty-state-box {
-  padding: 40px;
-  border: 1px dashed #444;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.02);
-}
-
-.empty-state-icon {
-  font-size: 3rem;
-  margin: 0;
-}
-
-.card-link-wrapper {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.collection-card-image {
-  width: 100%;
-  border-radius: 8px;
 }
 
 /* --- Detail Page Specifics --- */
