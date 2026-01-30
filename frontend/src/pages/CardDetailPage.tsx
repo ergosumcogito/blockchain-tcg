@@ -17,6 +17,7 @@ export function CardDetailPage() {
 
     const isMissing = userCard.balance === 0;
     const imageClass = isMissing ? "detail-image is-missing" : "detail-image";
+    const tiltClass = isMissing ? "tilt-container" : "tilt-container interactive";
 
     return (
         <div className="page-content">
@@ -30,6 +31,7 @@ export function CardDetailPage() {
             <div className="detail-container">
 
                 <Tilt
+                    className={tiltClass}
                     tiltEnable={!isMissing}
                     scale={1.05}
                     transitionSpeed={1000}

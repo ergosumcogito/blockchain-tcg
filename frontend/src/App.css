@@ -362,3 +362,16 @@ button {
   font-weight: bold;
   margin: 10px 0;
 }
+
+.tilt-container {
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  justify-content: center;
+  touch-action: auto;
+}
+
+.tilt-container.interactive {
+  touch-action: none;
+  cursor: grab;
+}
