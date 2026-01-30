@@ -29,14 +29,7 @@ function Layout({
       <div className="content-wrapper">
         <div className="container-limit">
           <div className="header-bar">
-            <h2 style={{ 
-              margin: 0, 
-              background: 'linear-gradient(45deg, #646cff, #9f5afd)', 
-              WebkitBackgroundClip: 'text', 
-              WebkitTextFillColor: 'transparent' 
-            }}>
-              BlockDeck
-            </h2>
+            <h2 className="app-title">BlockDeck</h2>
             
             {userAddress ? (
               <span className="wallet-badge">
@@ -44,16 +37,7 @@ function Layout({
               </span>
             ) : (
               <button 
-                onClick={connectWallet} 
-                style={{
-                  background: 'transparent', 
-                  border: '1px solid var(--accent-color)', 
-                  color: 'var(--accent-color)', 
-                  padding: '6px 12px', 
-                  borderRadius: '8px',
-                  fontSize: '0.8rem'
-                }}
-              >
+                onClick={connectWallet} className="connect-btn">
                 Connect Wallet
               </button>
             )}

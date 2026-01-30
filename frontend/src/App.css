@@ -29,6 +29,22 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+.app-title {
+  margin: 0; 
+  background: linear-gradient(45deg, #646cff, #9f5afd); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+.connect-btn {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+
 /* --- Layout Wrapper --- */
 .app-container {
   display: flex;
