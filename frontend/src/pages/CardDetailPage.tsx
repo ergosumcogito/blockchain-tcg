@@ -2,6 +2,7 @@ import { useParams, useOutletContext, Link } from "react-router-dom";
 import type { AppContextType } from "../App";
 import { getCardMeta } from "../cardData";
 import "../App.css";
+import Tilt from "react-parallax-tilt";
 
 export function CardDetailPage() {
     const { id } = useParams();
@@ -28,11 +29,23 @@ export function CardDetailPage() {
 
             <div className="detail-container">
 
-                <img
-                    src={meta.image}
-                    alt={meta.name}
-                    className={imageClass}
-                />
+                <Tilt
+                    tiltEnable={!isMissing}
+                    scale={1.05}
+                    transitionSpeed={1000}
+                    tiltMaxAngleX={15}
+                    tiltMaxAngleY={15}
+                    glareEnable={!isMissing}
+                    glareMaxOpacity={0.4}
+                    glareColor="#ffffff"
+                    glarePosition="all"
+                >
+                    <img
+                        src={meta.image}
+                        alt={meta.name}
+                        className={imageClass}
+                    />
+                </Tilt>
 
                 <div className="detail-info-wrapper">
                     <h1 className="detail-title">{meta.name}</h1>
