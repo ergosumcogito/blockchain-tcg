@@ -18,7 +18,11 @@ export function Store() {
       ) : (
         <div className="store-card">
 
-          <h3>Standard Booster</h3>
+          <img
+            src="https://kartomaniak.pl/userdata/public/gfx/675/P10346-ME01-3D-Booster-Wraps-Standard-3-MVenasaur-25.png"
+            alt="Standard Booster Pack"
+            className="store-booster-image"
+          />
 
           <p className="store-booster-text">
             Enthält 5 zufällige Karten.
