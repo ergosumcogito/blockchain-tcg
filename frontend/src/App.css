@@ -54,7 +54,7 @@ body {
 
 .content-wrapper {
   flex: 1;
-  padding-top: 20px;
+  padding-top: 90px;
   padding-bottom: calc(var(--nav-height) + 20px);
   overflow-y: auto;
   display: flex;
@@ -115,12 +115,18 @@ body {
 
 /* --- Wallet Status (oben) --- */
 .header-bar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 0;
-  margin-bottom: 20px;
-  width: 100%; 
+  padding: 15px 20px;
+  background-color: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #333;
 }
 
 .wallet-badge {
