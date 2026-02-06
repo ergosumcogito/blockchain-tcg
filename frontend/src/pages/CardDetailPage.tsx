@@ -33,6 +33,7 @@ export function CardDetailPage() {
                 <Tilt
                     className={tiltClass}
                     tiltEnable={!isMissing}
+                    tiltReverse={true}
                     scale={1.05}
                     transitionSpeed={1000}
                     tiltMaxAngleX={15}
