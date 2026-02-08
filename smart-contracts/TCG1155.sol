@@ -17,6 +17,9 @@ contract TCG1155 is ERC1155, Ownable {
     // All card IDs (used for boosters & frontend)
     uint256[] public cardIds;
 
+    // Booster price (MVP: can be 0 or very small)
+    uint256 public boosterPrice = 1 wei;
+
     /* =========================
              EVENTS
     ========================== */
@@ -24,6 +27,7 @@ contract TCG1155 is ERC1155, Ownable {
     event CardTypeAdded(uint256 indexed tokenId, uint256 maxSupply);
     event BoosterOpened(address indexed user, uint256[] ids);
     event DemoMintExecuted(address indexed to);
+    event BoosterPriceUpdated(uint256 newPrice);
 
     /* =========================
            CONSTRUCTOR
@@ -34,15 +38,15 @@ contract TCG1155 is ERC1155, Ownable {
         Ownable(msg.sender)
     {
         // Initial demo cards
-        _addCardType(1, 20); // Pikachu Standard
-        _addCardType(2, 3);  // Pikachu VMAX
-        _addCardType(3, 20); // Charizard Standrd
-        _addCardType(4, 3);  // Charizard VMAX
-        _addCardType(5, 1); // Umbreon VMAX
-        _addCardType(6, 20); // Slowpoke Standard
-        _addCardType(7, 10); // Greninja EX
-        _addCardType(8, 5); // Alakazam Reverse Holo
-        _addCardType(9, 3); // Zekrom EX
+        _addCardType(1, 20);  // Pikachu Standard
+        _addCardType(2, 3);   // Pikachu VMAX
+        _addCardType(3, 20);  // Charizard Standard
+        _addCardType(4, 3);   // Charizard VMAX
+        _addCardType(5, 1);   // Umbreon VMAX
+        _addCardType(6, 20);  // Slowpoke Standard
+        _addCardType(7, 10);  // Greninja EX
+        _addCardType(8, 5);   // Alakazam Reverse Holo
+        _addCardType(9, 3);   // Zekrom EX
         _addCardType(10, 20); // Rattata Standard
     }
 
@@ -90,7 +94,8 @@ contract TCG1155 is ERC1155, Ownable {
            BOOSTER LOGIC
     ========================== */
 
-    function openBooster(uint256 packSize) external {
+    function openBooster(uint256 packSize) external payable {
+        require(msg.value == boosterPrice, "Incorrect booster price");
         require(packSize > 0 && packSize <= 10, "Invalid pack size");
         require(_availableCardsCount() >= packSize, "Not enough cards left");
 
@@ -124,7 +129,7 @@ contract TCG1155 is ERC1155, Ownable {
             )
         );
 
-        // Try pseudo-random first
+        // Pseudo-random attempts
         for (uint256 i = 0; i < 10; i++) {
             uint256 id = cardIds[(rand + i) % len];
             if (totalMinted[id] < maxSupply[id]) {
@@ -156,29 +161,25 @@ contract TCG1155 is ERC1155, Ownable {
           DEMO / MVP HELPERS
     ========================== */
 
-    // Instantly fill collection for demo
     function demoMintStarter() external onlyOwner {
-    uint256 len = cardIds.length;
-    uint256 mintCount = len > 20 ? 20 : len; // only first 20 card IDs
+        uint256 len = cardIds.length;
+        uint256 mintCount = len > 20 ? 20 : len;
 
-    uint256[] memory ids = new uint256[](mintCount);
-    uint256[] memory amounts = new uint256[](mintCount);
+        uint256[] memory ids = new uint256[](mintCount);
+        uint256[] memory amounts = new uint256[](mintCount);
 
-    for (uint256 i = 0; i < mintCount; i++) {
-        uint256 id = cardIds[i];
-
-        // Only mint if the user doesn’t already have this card
-        if (totalMinted[id] < maxSupply[id]) {
-            ids[i] = id;
-            amounts[i] = 1;
-            totalMinted[id] += 1;
+        for (uint256 i = 0; i < mintCount; i++) {
+            uint256 id = cardIds[i];
+            if (totalMinted[id] < maxSupply[id]) {
+                ids[i] = id;
+                amounts[i] = 1;
+                totalMinted[id] += 1;
+            }
         }
+
+        _mintBatch(msg.sender, ids, amounts, "");
+        emit DemoMintExecuted(msg.sender);
     }
-
-    _mintBatch(msg.sender, ids, amounts, "");
-    emit DemoMintExecuted(msg.sender);
-}
-
 
     /* =========================
                BURN
@@ -195,6 +196,19 @@ contract TCG1155 is ERC1155, Ownable {
         );
 
         _burn(from, id, amount);
+    }
+
+    /* =========================
+           ECONOMY ADMIN
+    ========================== */
+
+    function setBoosterPrice(uint256 newPrice) external onlyOwner {
+        boosterPrice = newPrice;
+        emit BoosterPriceUpdated(newPrice);
+    }
+
+    function withdraw() external onlyOwner {
+        payable(owner()).transfer(address(this).balance);
     }
 
     /* =========================
