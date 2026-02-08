@@ -44,6 +44,46 @@ export const CARD_DATABASE: Record<string, CardMeta> = {
         name: "Rattata Standard",
         image: "https://pocket.pokemongohub.net/tcg-pocket/cards/a1/webp/cPK_10_001890_00_KORATTA_C_M_M_en_US.webp"
     },
+    11: {
+        name: "Emolga Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Black+Bolt/112.webp",
+    },
+    12: {
+        name: "Ludicolo Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Detective+Pikachu/2.webp",
+    },
+    13: {
+        name: "Slugma Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Fusion+Strike/034.webp",
+    },
+    14: {
+        name: "Torchic Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Dark+Explorers/14.webp",
+    },
+    15: {
+        name: "Simsear Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Next+Destinies/16.webp",
+    },
+    16: {
+        name: "Swadloon Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Plasma+Storm/9.webp",
+    },
+    17: {
+        name: "Whimsicott EX",
+        image: "https://pokemoncardimages.pokedata.io/images/White+Flare/165.webp",
+    },
+    18: {
+        name: "Litwick Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Phantom+Forces/41.webp",
+    },
+    19: {
+        name: "Joltik Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/Stellar+Crown/050.webp",
+    },
+    20: {
+        name: "Herdier Standard",
+        image: "https://pokemoncardimages.pokedata.io/images/White+Flare/155.webp",
+    },
     0: {
         name: "Unbekannte Karte",
         image: "https://www.mypokecard.com/en/Gallery/my/galery/dtTXXVw1kGvv.jpg"

@@ -48,6 +48,16 @@ contract TCG1155 is ERC1155, Ownable {
         _addCardType(8, 5);   // Alakazam Reverse Holo
         _addCardType(9, 3);   // Zekrom EX
         _addCardType(10, 20); // Rattata Standard
+        _addCardType(11, 20); // Emolga Standard
+        _addCardType(12, 20); // Ludicolo Standard
+        _addCardType(13, 20); // Slugma Standard
+        _addCardType(14, 20); // Torchic Standard
+        _addCardType(15, 20); // Simsear Standard
+        _addCardType(16, 20); // Swadloon Standard
+        _addCardType(17, 5); // Whimsicott EX
+        _addCardType(18, 20); // Litwick Standard
+        _addCardType(19, 20); // Joltik Standard
+        _addCardType(20, 20); // Herdier Standard
     }
 
     /* =========================
