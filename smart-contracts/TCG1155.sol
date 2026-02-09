@@ -54,7 +54,7 @@ contract TCG1155 is ERC1155, Ownable {
         _addCardType(14, 20); // Torchic Standard
         _addCardType(15, 20); // Simsear Standard
         _addCardType(16, 20); // Swadloon Standard
-        _addCardType(17, 5); // Whimsicott EX
+        _addCardType(17, 5);  // Whimsicott EX
         _addCardType(18, 20); // Litwick Standard
         _addCardType(19, 20); // Joltik Standard
         _addCardType(20, 20); // Herdier Standard
@@ -107,28 +107,56 @@ contract TCG1155 is ERC1155, Ownable {
     function openBooster(uint256 packSize) external payable {
         require(msg.value == boosterPrice, "Incorrect booster price");
         require(packSize > 0 && packSize <= 10, "Invalid pack size");
-        require(_availableCardsCount() >= packSize, "Not enough cards left");
 
-        uint256[] memory ids = new uint256[](packSize);
-        uint256[] memory amounts = new uint256[](packSize);
+        uint256 availableCount = _availableCardsCount();
+        require(availableCount > 0, "No cards left");
 
-        for (uint256 i = 0; i < packSize; i++) {
-            uint256 cardId = _pickRandomAvailableCard();
-            require(cardId != 0, "No cards available");
+        // Booster gives up to packSize UNIQUE cards
+        // If fewer unique cards are available, give all remaining
+        uint256 cardsToMint = packSize;
+        if (availableCount < packSize) {
+            cardsToMint = availableCount;
+        }
 
-            totalMinted[cardId] += 1;
+        // Build a list of all available card IDs
+        uint256[] memory available = _getAvailableCardIds();
+
+        // Shuffle available cards (pseudo-random)
+        _shuffleArray(available);
+
+        uint256[] memory ids = new uint256[](cardsToMint);
+        uint256[] memory amounts = new uint256[](cardsToMint);
+
+        for (uint256 i = 0; i < cardsToMint; i++) {
+            uint256 cardId = available[i];
+
             ids[i] = cardId;
             amounts[i] = 1;
+            totalMinted[cardId] += 1;
         }
 
         _mintBatch(msg.sender, ids, amounts, "");
         emit BoosterOpened(msg.sender, ids);
     }
 
-    function _pickRandomAvailableCard() internal view returns (uint256) {
-        uint256 len = cardIds.length;
-        if (len == 0) return 0;
+    // Returns all card IDs that still have available supply
+    function _getAvailableCardIds() internal view returns (uint256[] memory) {
+        uint256 count = _availableCardsCount();
+        uint256[] memory result = new uint256[](count);
 
+        uint256 index = 0;
+        for (uint256 i = 0; i < cardIds.length; i++) {
+            uint256 id = cardIds[i];
+            if (totalMinted[id] < maxSupply[id]) {
+                result[index++] = id;
+            }
+        }
+
+        return result;
+    }
+
+    // Simple Fisher–Yates style shuffle (pseudo-random, MVP-safe)
+    function _shuffleArray(uint256[] memory arr) internal view {
         uint256 rand = uint256(
             keccak256(
                 abi.encodePacked(
@@ -139,23 +167,11 @@ contract TCG1155 is ERC1155, Ownable {
             )
         );
 
-        // Pseudo-random attempts
-        for (uint256 i = 0; i < 10; i++) {
-            uint256 id = cardIds[(rand + i) % len];
-            if (totalMinted[id] < maxSupply[id]) {
-                return id;
-            }
+        for (uint256 i = arr.length - 1; i > 0; i--) {
+            uint256 j = rand % (i + 1);
+            (arr[i], arr[j]) = (arr[j], arr[i]);
+            rand = uint256(keccak256(abi.encodePacked(rand, i)));
         }
-
-        // Fallback: linear scan
-        for (uint256 i = 0; i < len; i++) {
-            uint256 id = cardIds[i];
-            if (totalMinted[id] < maxSupply[id]) {
-                return id;
-            }
-        }
-
-        return 0;
     }
 
     function _availableCardsCount() internal view returns (uint256 count) {
