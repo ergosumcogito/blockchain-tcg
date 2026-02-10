@@ -2,7 +2,7 @@ import { BrowserProvider, Contract } from "ethers";
 import TCG1155ABI from "./abi/TCG1155.json";
 
 // Replace with the address where you deployed the contract
-export const CONTRACT_ADDRESS = "0xaD89C976f3910864fdD04aA2d7E54Be0cf9851b5";
+export const CONTRACT_ADDRESS = "0xCONTRACT_ADDRESS";
 
 // Returns a connected contract instance
 export async function getContract(): Promise<Contract> {
