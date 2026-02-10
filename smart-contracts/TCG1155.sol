@@ -25,7 +25,7 @@ contract TCG1155 is ERC1155, Ownable {
     ========================== */
 
     event CardTypeAdded(uint256 indexed tokenId, uint256 maxSupply);
-    event BoosterOpened(address indexed user, uint256[] ids);
+    event BoosterOpened(address indexed user, uint256[] ids, uint256 pricePaid);
     event DemoMintExecuted(address indexed to);
     event BoosterPriceUpdated(uint256 newPrice);
 
@@ -136,7 +136,7 @@ contract TCG1155 is ERC1155, Ownable {
         }
 
         _mintBatch(msg.sender, ids, amounts, "");
-        emit BoosterOpened(msg.sender, ids);
+        emit BoosterOpened(msg.sender, ids, msg.value);
     }
 
     // Returns all card IDs that still have available supply
@@ -234,8 +234,10 @@ contract TCG1155 is ERC1155, Ownable {
     }
 
     function withdraw() external onlyOwner {
-        payable(owner()).transfer(address(this).balance);
+    (bool success, ) = owner().call{value: address(this).balance}("");
+    require(success, "Withdraw failed");
     }
+
 
     /* =========================
            VIEW FUNCTIONS
