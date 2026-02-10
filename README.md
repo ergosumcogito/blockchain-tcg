@@ -3,8 +3,8 @@
 Monorepo for a MVP of a Blockchain-based Trading Card Game.
 
 <p float="left">
-  <img src="frontend/public/screenshot-2.png" height="350" style="margin-right:10px;" />
-  <img src="frontend/public/screenshot-1.png" height="350" />
+  <img src="frontend/public/screenshot-2.png" height="250" style="margin-right:10px;" />
+  <img src="frontend/public/screenshot-1.png" height="250" />
 </p>
 
 
