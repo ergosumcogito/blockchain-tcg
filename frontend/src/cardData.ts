@@ -6,11 +6,11 @@ export type CardMeta = {
 export const CARD_DATABASE: Record<string, CardMeta> = {
     1: {
         name: "Pikachu Standard",
-        image: "/cards/1.jpg"
+        image: "https://pokemoncardimages.pokedata.io/images/Base+Set+2/87.webp"
     },
     2: {
         name: "Pikachu VMAX",
-        image: "/cards/2.jpg"
+        image: "https://pokemoncardimages.pokedata.io/images/Vivid+Voltage/188.webp"
     },
     3: {
         name: "Charizard Standard",
