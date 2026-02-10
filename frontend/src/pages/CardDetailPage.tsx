@@ -36,10 +36,10 @@ export function CardDetailPage() {
                     tiltReverse={true}
                     scale={1.05}
                     transitionSpeed={1000}
-                    tiltMaxAngleX={15}
-                    tiltMaxAngleY={15}
+                    tiltMaxAngleX={20}
+                    tiltMaxAngleY={20}
                     glareEnable={!isMissing}
-                    glareMaxOpacity={0.4}
+                    glareMaxOpacity={0.5}
                     glareColor="#ffffff"
                     glarePosition="all"
                 >
